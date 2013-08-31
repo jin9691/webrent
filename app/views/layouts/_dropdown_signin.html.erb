@@ -1,0 +1,10 @@
+<a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">Đăng nhập <strong class="caret"></strong></a>
+<div class="sign-in dropdown-menu" role="menu" aria-labelledby="dLabel">
+	<%= form_for(:session, url: sessions_path) do |f| %>
+	<%=f.text_field :email, style:"margin-bottom: 15px;",class: "form-control",placeholder:"Email"%>
+	<%=f.password_field :password, style:"margin-bottom: 15px;",class: "form-control",placeholder:"Mật khẩu"%>
+	<%= f.submit "Đăng nhập", class: "btn btn-primary btn-block", style:"margin-bottom: 10px;" %>
+	<%= link_to "Quên mật khẩu", "#",class: "forgot btn btn-warning btn-block" %>
+	<% end %>
+	<br>
+</div>

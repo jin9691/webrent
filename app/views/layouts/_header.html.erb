@@ -1,0 +1,41 @@
+<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="font-size:30px"><b>Webrent</b></a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">Giới thiệu</a>
+        </li>
+        <li>
+          <a href="#">Danh sách website</a>
+        </li>
+        <li>
+          <a href="#">Hướng dẫn</a>
+        </li>
+        <li >
+          <a href="#"><span class="label label-danger" style="font-size:18px">Nạp thẻ</span></a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">      
+          <% if signed_in? %>
+          <li><%= link_to "Đăng xuất", signout_path, method: "delete" %></li>
+          <% else %>
+          <li><%= link_to "Đăng ký", signup_path %></li>
+          <li><%= link_to "Đăng nhập", signin_path %></li>
+          </li>
+          <li class="divider-vertical"></li>
+          <% end %>
+        </ul>
+    </nav>
+  </div>
+</header>
+
+

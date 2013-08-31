@@ -1,0 +1,75 @@
+<% provide(:title, 'Home') %>
+<div class="home">
+	<div class="container">
+		<!-- Slider -->
+		<div class="row">
+			<br><br>
+			<main class="bs-masthead" id="content" role="main">
+				<div class="container">
+					<div class="col-xs-9 col-sm-9 col-md-9" id="carousel-bounding-box">
+						<br>
+						<h1>Webrent</h1><br>
+						<p class="lead">Đơn giản,dễ dàng,nhanh chóng, không mất phí khởi tạo, không cần mua tên miền,thuê host, Chỉ cần "đăng ký thành viên" và "khởi tạo website" là có thể sở hữu ngay một website bán hàng như ý muốn.</p>
+						<br>
+						<p>
+							<a href="#" class="btn btn-outline-inverse btn-lg">Khởi tạo website</a>
+						</p>
+						<br>
+					</div>
+					<div class="login">
+						<div class="row-fluid pricing-table pricing-one-column">
+							<div class="col-xs-3 col-sm-3 col-md-3 plan">
+								<h2 style="padding-bottom:5px"><b>Đăng ký nhanh</b></h2>
+								<br>
+								<%= form_for(@user) do |f| %>
+								<%= render 'shared/error_messages', object: @user %>
+								<%= f.text_field :name, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Họ và tên" %>
+
+								<%= f.text_field :email, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Địa chỉ email" %>
+
+								<%= f.password_field :password, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Mật khẩu" %>
+
+								<%= f.password_field :password_confirmation, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Nhập lại mật khẩu" %>
+								<%= f.submit "Đăng ký", class: "btn btn-success btn-block", style:"margin-bottom: 15px;" %>
+								<%= link_to "Đăng nhập", signin_path, class: "btn btn-primary btn-block", style:"margin-bottom: 20px;" %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+jQuery(document).ready(function($) {
+
+	$('#myCarousel').carousel({
+		interval: 3000
+	});
+
+	$('#carousel-text').html($('#slide-content-0').html());
+
+        //Handles the carousel thumbnails
+        $('[id^=carousel-selector-]').click( function(){
+        	var id_selector = $(this).attr("id");
+        	var id = id_selector.substr(id_selector.length -1);
+        	var id = parseInt(id);
+        	$('#myCarousel').carousel(id);
+        });
+
+
+        // When the carousel slides, auto update the text
+        $('#myCarousel').on('slid', function (e) {
+        	var id = $('.item.active').data('slide-number');
+        	$('#carousel-text').html($('#slide-content-'+id).html());
+        });
+
+        
+
+    });
+
+</script>
