@@ -30,8 +30,12 @@
 								<%= f.password_field :password, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Mật khẩu" %>
 
 								<%= f.password_field :password_confirmation, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Nhập lại mật khẩu" %>
-								<%= f.submit "Đăng ký", class: "btn btn-success btn-block", style:"margin-bottom: 15px;" %>
-								<%= link_to "Đăng nhập", signin_path, class: "btn btn-primary btn-block", style:"margin-bottom: 20px;" %>
+								<%= f.submit "Đăng ký", class: "btn btn-success btn-block", style:"margin-bottom: 10px;" %>
+								<a data-toggle="modal" href="#myModal" class="forgot btn btn-warning btn-block" style="margin-bottom: 20px">Quên mật khẩu</a>
+
+								<%= content_for :popup_reset do %>
+								<%= render 'layouts/popup_reset_password' %>
+								<% end %>
 								<% end %>
 							</div>
 						</div>

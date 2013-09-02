@@ -2,6 +2,10 @@
 
 
 /* overwrite bootstrap */
+.modal-footer
+{
+  margin-top:0px;
+}
 .navbar-fixed-top
 {
   top:0;

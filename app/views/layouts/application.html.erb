@@ -11,29 +11,29 @@
 
 	<div class="container">
 		<% flash.each do |key, value| %>
-      <% if params[:controller] == "users" && params[:action] == "show" %>
-      <% update = true %>
-      <% end %>
-      <% if params[:controller] == "sessions" && params[:action] == "new" %>
-      <% update = true %>
-      <% end %>
-      <% unless params[:commit] == "Đăng nhập" && params[:action] == "create" || update == true || params[:commit] == "Đăng ký" %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
+    <% if params[:controller] == "users" && params[:action] == "show" %>
+    <% update = true %>
+    <% end %>
+    <% if params[:controller] == "sessions" && params[:action] == "new" %>
+    <% update = true %>
+    <% end %>
+    <% unless params[:commit] == "Đăng nhập" && params[:action] == "create" || update == true || params[:commit] == "Đăng ký" %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
 
     <% end %>
     <%= yield %>
   </div>
 
 
-    <%= yield(:homepage) %>
+  <%= yield(:homepage) %>
   
 
   <div id="contentPopup" style="display:none">    
     <%= yield(:popup) %>
   </div>
-
-  <%= yield(:popup_reset) %>
+  
+    <%= yield(:popup_reset) %>
 
   <%= yield(:upload_form) %>
   <%= render 'layouts/footer' %>

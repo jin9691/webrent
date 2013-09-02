@@ -22,16 +22,18 @@
         </li>
       </ul>
       <ul class="nav navbar-nav pull-right">      
-          <% if signed_in? %>
-          <li><%= link_to "Đăng xuất", signout_path, method: "delete" %></li>
-          <% else %>
-          <li><%= link_to "Đăng ký", signup_path %></li>
-          <li><%= link_to "Đăng nhập", signin_path %></li>
-          </li>
-          <% end %>
-        </ul>
-    </nav>
-  </div>
+        <% if signed_in? %>
+        <li><%= link_to "Đăng xuất", signout_path, method: "delete" %></li>
+        <% else %>
+        <li><%= link_to "Đăng ký", signup_path %></li>
+        <li>
+          <%= link_to "Đăng nhập", signin_path %>
+        </li>
+      </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
 </header>
 
 

@@ -1,5 +1,5 @@
 Webrent::Application.routes.draw do
-  get "static_pages/home"
+  match '/forgot_password', to:'users#forgot_password', via: 'post'
   resources :users do
     member do
       match '/register', to:'users#register', via: 'get'
