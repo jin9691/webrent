@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902093912) do
+ActiveRecord::Schema.define(version: 20130902182053) do
 
   create_table "users", force: true do |t|
     t.integer  "parent_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20130902093912) do
     t.string   "remember_token"
     t.string   "sid"
     t.boolean  "active",          default: false
+    t.boolean  "reset",           default: true
+    t.datetime "send_reset_at"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

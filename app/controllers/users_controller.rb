@@ -35,6 +35,18 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def update_password
+		@user = User.find(params[:id])
+		@user.update_attribute(:reset,true)
+		@user.set_sid
+		if @user.update_attributes(user_params)
+			flash[:success] = "Đổi mật khẩu thành công. Bạn có thể đăng nhập vào website ngay bây giờ."
+			redirect_to signin_path
+		else
+			render 'reset_password'
+		end
+	end
+
 	def create
 		@user = User.new(user_params)
 		if @user.save

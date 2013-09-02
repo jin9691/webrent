@@ -4,7 +4,7 @@ Webrent::Application.routes.draw do
     member do
       match '/register', to:'users#register', via: 'get'
       match '/reset_password', to:'users#reset_password', via: 'get'
-      match '/update_password', to:'users#update_password', via: 'post'
+      match '/update_password', to:'users#update_password', via: 'patch'
     end
   end
   resources :sessions, only: [:new, :create, :destroy]
