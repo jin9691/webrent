@@ -1,0 +1,4 @@
+users
+parent_id: integer
+name: string
+email: string

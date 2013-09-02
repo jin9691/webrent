@@ -14,7 +14,10 @@
       <% if params[:controller] == "users" && params[:action] == "show" %>
       <% update = true %>
       <% end %>
-      <% unless params[:commit] == "Sign in" && params[:action] == "new" || update == true %>
+      <% if params[:controller] == "sessions" && params[:action] == "new" %>
+      <% update = true %>
+      <% end %>
+      <% unless params[:commit] == "Đăng nhập" && params[:action] == "create" || update == true || params[:commit] == "Đăng ký" %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
 

@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
+	skip_before_filter :signed_in_user
 	def new
 	end
 
 	def create
 		user = User.find_by(email: params[:session][:email].downcase)
-		if user && user.authenticate(params[:session][:password])
+		if user && user.authenticate(params[:session][:password]) && user.parent_id.nil? && user.active
 			sign_in user
 			redirect_to user
 		else
-			flash.now[:error] = 'Email hoặc mật khẩu không đúng, mời thử lại!'
+			flash.now[:danger] = 'Email hoặc mật khẩu không đúng, mời thử lại!'
 			render 'new'
 		end
 	end

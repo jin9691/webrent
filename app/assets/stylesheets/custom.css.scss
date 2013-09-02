@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 
-/* overwrite bootstrp */
+/* overwrite bootstrap */
 .navbar-fixed-top
 {
   top:0;
@@ -30,15 +30,18 @@
 }
 .bs-docs-nav .navbar-nav > li > a
 {
+  font-size: 16px;
   color:#cdbfe3;
 }
 .bs-docs-nav .navbar-nav > .active > a, .bs-docs-nav .navbar-nav > .active > a:hover
 {
   color: #fff;
+  font-weight: bold;
   background-color:#463265;
 }
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus
 {
+  font-weight: bold;
   color: #fff;
   background-color:#463265;
 }
@@ -72,8 +75,9 @@
   border-color: #fff;
 }
 /* HTML */
+
 body{
-  padding-top: 50px;
+  padding-top: 80px;
   background-image:url(pages/background.png);
 }
 
@@ -84,7 +88,7 @@ h1,h2,h3 {
 
 /* FOOTER */
 footer {
-  margin-top: 80px;
+  margin-top: 70px;
   padding-top: 5px;
   color: #999;
   margin-bottom: 10px;

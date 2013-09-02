@@ -1,0 +1,31 @@
+<% provide(:title, 'Sign up') %>
+<div class="row signup" style="padding-top:50px">
+  <div class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-3 col-sm-offset-3 col-md-offset-3">
+     <div class="login">
+      <div class="row-fluid pricing-table pricing-one-column">
+        <div class="col-xs-10 col-sm-10 col-md-10 plan">
+            <h3><b>Đăng ký tài khoản Webrent ngay hôm nay</b></h3>
+            <p style="line-height:150%;font-size:15px;padding-top:10px">Chỉ mất <b>30 giây</b> đăng ký và hoàn toàn <b>miễn phí</b>, bạn sẽ sở hữu ngay cho mình 1 tài khoản <a href="#" style="text-decoration:none;"><b>Webrent</b></a> để có thể khởi tạo một website bán hàng như ý.</p><p  style="padding-bottom:10px"> Hãy <%= link_to "đăng nhập" , signin_path, style: "text-decoration:none;font-weight:bold" %> nếu bạn đã có tài khoản.
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %>
+            </div>
+            <% end %>
+            <%= form_for(@user) do |f| %>
+            <%= render 'shared/error_messages', object: @user %>
+            <%= f.text_field :name, style:"margin-bottom: 20px;",class: "form-control",placeholder:"Họ và tên" %>
+
+            <%= f.text_field :email, style:"margin-bottom: 20px;",class: "form-control",placeholder:"Địa chỉ email" %>
+
+            <%= f.password_field :password, style:"margin-bottom: 20px;",class: "form-control",placeholder:"Mật khẩu" %>
+
+            <%= f.password_field :password_confirmation, style:"margin-bottom: 25px;",class: "form-control",placeholder:"Nhập lại mật khẩu" %>
+
+            <%= f.submit "Đăng ký", class: "btn btn-lg btn-success btn-block", style:"margin-bottom: 15px;" %>
+            <%= link_to "Trở lại trang chủ", root_path, class: "btn btn-lg btn-primary btn-block" %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>

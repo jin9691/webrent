@@ -1,6 +1,12 @@
 Webrent::Application.routes.draw do
   get "static_pages/home"
-  resources :users
+  resources :users do
+    member do
+      match '/register', to:'users#register', via: 'get'
+      match '/reset_password', to:'users#reset_password', via: 'get'
+      match '/update_password', to:'users#update_password', via: 'post'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'

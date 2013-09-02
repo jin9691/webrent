@@ -1,0 +1,4 @@
+<p>Chào mừng <%= @user.name %> đã đến với <%= link_to "Webrent", root_url %></p>
+<p>Bạn đã sẵn sàng chuẩn bị cho mình một chiến lược kinh doanh bằng cách khởi tạo một website hoàn toàn miễn phí từ các dịch vụ của chúng tôi chưa?</p>
+<h3>Trước hết, hãy kích hoạt tài khoản của bạn bằng cách click vào link dưới đây:</h3>
+<%= link_to "Hoàn tất quá trình đăng ký", register_user_url(@user.to_secure_param) %>

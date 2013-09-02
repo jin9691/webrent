@@ -1,0 +1,25 @@
+<% provide(:title, "Sign in") %>
+
+<div class="row" style="padding-top:50px">
+  <div class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-3 col-sm-offset-3 col-md-offset-3">
+     <div class="login">
+      <div class="row-fluid pricing-table pricing-one-column">
+        <div class="col-xs-10 col-sm-10 col-md-10 plan">
+          <h2 style="padding-bottom:15px"><b>Đăng nhập</b></h2>
+          <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+          <% end %>
+          <%= form_for(:session, url: sessions_path) do |f| %>
+          <%=f.text_field :email, style:"margin-bottom: 15px;",class: "form-control",placeholder:"Địa chỉ email"%>
+          <%=f.password_field :password, style:"margin-bottom: 20px;",class: "form-control",placeholder:"Mật khẩu"%>
+          <%= f.submit "Đăng nhập", class: "btn btn-lg btn-primary btn-block", style:"margin-bottom: 10px;" %>
+          <%= link_to "Quên mật khẩu", "#",class: "forgot btn-lg btn btn-warning btn-block", style:"margin-bottom: 10px;" %>
+          <%= link_to "Tạo tài khoản", "#",class: "btn-lg btn btn-success btn-block", style:"margin-bottom: 20px;" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</div>

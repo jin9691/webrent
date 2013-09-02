@@ -1,0 +1,11 @@
+<% if object.errors.any? %>
+<div id="error_explanation" style="margin-bottom:30px">
+  <div class="alert alert-danger">
+    <ul>
+      <% object.errors.full_messages.each do |msg| %>
+      <li style="color:red">* <%= gender_error(msg) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
