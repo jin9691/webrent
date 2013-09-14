@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 	end
 
 	def forgot_password
-		@user = User.find_by_email(params[:email])
+		@user = User.find_by_email_and_parent_id(params[:email],nil)
 		unless @user.nil?
 			@user.update_attribute(:reset,false)
 			@user.update_attribute(:send_reset_at,Time.zone.now)
@@ -29,8 +29,8 @@ class UsersController < ApplicationController
 
 	def reset_password
 		@user = User.find_by_sid(params[:id])
-		if @user.reset || @user.send_reset_at < 1.days.ago
-			flash[:error] = "Password reset has expired."
+		if @user.nil? || @user.reset || @user.send_reset_at < 1.days.ago
+			flash[:danger] = "Lấy lại mật khẩu đã hết hiệu lực. Hãy thử lại."
 			redirect_to signin_path
 		end
 	end

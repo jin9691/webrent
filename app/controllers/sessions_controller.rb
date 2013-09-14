@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:session][:email].downcase)
 		if user && user.authenticate(params[:session][:password]) && user.parent_id.nil? && user.active
 			sign_in user
-			redirect_to user
+			redirect_to welcome_path
 		else
 			flash.now[:danger] = 'Email hoặc mật khẩu không đúng, mời thử lại!'
 			render 'new'

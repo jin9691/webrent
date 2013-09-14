@@ -1,34 +1,64 @@
 <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
-  <div class="container">
+  <div style="padding-left:20px;padding-right:20px">
     <div class="navbar-header">
       <a class="navbar-brand" href="<%=root_path %>" style="font-size:30px"><b>Webrent</b></a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "welcome" %>'>
+          <a href="<%=welcome_path %>"><span style="padding-right:5px" class="glyphicon glyphicon-home"></span> Trang chủ</a>
+        </li>
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "intro" %>'>
+          <a href="#"><span style="padding-right:5px" class="glyphicon glyphicon-star"></span> Giới thiệu</a>
+        </li>
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "weblist" %>'>
+          <a href="#"><span style="padding-right:5px" class="glyphicon glyphicon-list"></span> Danh sách website</a>
+        </li>
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "store" %>'>
+          <a href="#"><span style="padding-right:5px" class="glyphicon glyphicon-shopping-cart"></span> Cửa hàng</a>
+        </li>
+        <li class="divider-vertical"></li>
         <li>
-          <a href="#">Giới thiệu</a>
-        </li>
-        <li>
-          <a href="#">Danh sách website</a>
-        </li>
-        <li>
-          <a href="#">Hướng dẫn</a>
-        </li>
-        <li >
-          <a href="#">Nạp thẻ</a>
-        </li>
-        <li >
-          <a href="#"><span class="label label-warning" style="font-size:18px"><span class="glyphicon glyphicon-shopping-cart"></span> Cửa hàng</span></a>
-        </li>
+          <div id="custom-search-form" class="form-search form-horizontal">
+            <div class="input-append">
+              <input type="text" class="search-query form-control" placeholder="Từ khóa tìm kiếm...">
+              <button class="btn btn-search"><img src="/assets/icons/search_1.png"></button>
+            </div>
+          </div>
+      </li>
+
       </ul>
-      <ul class="nav navbar-nav pull-right">      
+      <ul class="nav navbar-nav pull-right">
         <% if signed_in? %>
-        <li><%= link_to "Đăng xuất", signout_path, method: "delete" %></li>
-        <% else %>
-        <li><%= link_to "Đăng ký", signup_path %></li>
         <li>
-          <%= link_to "Đăng nhập", signin_path %>
+          <div class="btn-group" style="padding-top:8px">
+            <button type="button" class="btn btn-success">Xin chào, <b><%= current_user.name.truncate(20) %></b></button>
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+              <span class="glyphicon glyphicon-cog"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" style="width:210px">
+              <li><a href="#"><i class="glyphicon glyphicon-list" style="margin-right:10px"></i> Websites <span style="margin-left:10px" class="badge badge-primary">4</span></a></li>
+              <li><a href="#"><i class="glyphicon glyphicon-shopping-cart" style="margin-right:10px"></i> Đơn hàng <span style="margin-left:10px" class="badge badge-primary">10</span></a></li>
+              <li class="divider"></li>
+              <li><a href="#"><i class="glyphicon glyphicon-user" style="margin-right:10px"></i> Thông tin cá nhân</a></li>
+              <li><a href="#"><i class="glyphicon glyphicon-wrench" style="margin-right:10px"></i> Đổi mật khẩu</a></li>
+              <li class="divider"></li>
+              <li><%= link_to raw("<i class='glyphicon glyphicon-share' style='margin-right:10px'></i> Đăng xuất"), signout_path, method: "delete" %></li>
+            </ul>
+          </div>
         </li>
+        <% else %>
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "signup" %>'><%= link_to "Đăng ký", signup_path,style: "width:120px;text-align:center" %></li>
+        <li class="divider-vertical"></li>
+        <li class='<%= "active" if check_page(params[:controller],params[:action]) == "signin" %>'>
+          <%= link_to "Đăng nhập", signin_path,style: "width:120px;text-align:center" %>
+        </li>
+        <li class="divider-vertical"></li>
       </li>
       <% end %>
     </ul>

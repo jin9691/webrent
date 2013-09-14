@@ -1,0 +1,13 @@
+<div class="sidebar-nav" style="padding-bottom: 25px;">
+	<div class="well" style="width:250px;">
+		<ul class="nav nav-list"> 
+		  <li><a href="index" style="font-size:20px"><b><%= current_user.name %></b></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-list" style="margin-right:5px"></i> Websites <span class="badge badge-primary">4</span></a></li>
+          <li><a href="#"><i class="glyphicon glyphicon-shopping-cart" style="margin-right:5px"></i> Đơn hàng <span class="badge badge-primary">10</span></a></li>
+          <li class="divider"></li>
+		  <li><a href="#"><i class="glyphicon glyphicon-user" style="margin-right:5px"></i> Thông tin cá nhân</a></li>
+		  <li><a href="#"><i class="glyphicon glyphicon-wrench" style="margin-right:5px"></i> Đổi mật khẩu</a></li>
+		  <li><%= link_to raw("<i class='glyphicon glyphicon-share' style='margin-right:5px'></i> Đăng xuất"), signout_path, method: "delete" %></li>
+		</ul>
+	</div>
+</div>

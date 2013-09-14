@@ -1,6 +1,5 @@
-<% provide(:title, "Sign in") %>
-
-<div class="row" style="padding-top:50px">
+<% provide(:title, "Đăng nhập") %>
+<div class="row" style="padding-top:100px">
   <div class="col-xs-7 col-sm-7 col-md-7 col-xs-offset-3 col-sm-offset-3 col-md-offset-3">
      <div class="login">
       <div class="row-fluid pricing-table pricing-one-column">
@@ -14,7 +13,7 @@
           <%=f.password_field :password, style:"margin-bottom: 20px;",class: "form-control",placeholder:"Mật khẩu"%>
           <%= f.submit "Đăng nhập", class: "btn btn-lg btn-primary btn-block", style:"margin-bottom: 10px;" %>
           <a data-toggle="modal" href="#myModal" class="forgot btn btn-warning btn-block btn-lg" style="margin-bottom: 10px">Quên mật khẩu</a>
-          <%= link_to "Tạo tài khoản", "#",class: "btn-lg btn btn-success btn-block", style:"margin-bottom: 20px;" %>
+          <%= link_to "Tạo tài khoản", signup_path,class: "btn-lg btn btn-success btn-block", style:"margin-bottom: 20px;" %>
           <% end %>
           <%= content_for :popup_reset do %>
           <%= render 'layouts/popup_reset_password' %>
