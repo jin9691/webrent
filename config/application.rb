@@ -1,5 +1,4 @@
 require File.expand_path('../boot', __FILE__)
-config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
 # Pick the frameworks you want:
 require "active_record/railtie"

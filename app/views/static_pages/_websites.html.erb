@@ -1,56 +1,46 @@
 <br>
-<div class="container-test">
-  <section id="dg-container-test" class="dg-container-test">
-    <div class="dg-wrapper">
-      <a href="#"><img src="/assets/test/1.jpg" alt="image01"><div>http://www.colazionedamichy.it/</div></a>
-      <a href="#"><img src="/assets/test/2.jpg" alt="image02"><div>http://www.percivalclo.com/</div></a>
-      <a href="#"><img src="/assets/test/3.jpg" alt="image03"><div>http://www.wanda.net/fr</div></a>
-      <a href="#"><img src="/assets/test/4.jpg" alt="image04"><div>http://lifeingreenville.com/</div></a>
-      <a href="#"><img src="/assets/test/5.jpg" alt="image05"><div>http://circlemeetups.com/</div></a>
-      <a href="#"><img src="/assets/test/6.jpg" alt="image06"><div>http://www.castirondesign.com/</div></a>
-      <a href="#"><img src="/assets/test/7.jpg" alt="image07"><div>http://www.foundrycollective.com/</div></a>
-      <a href="#"><img src="/assets/test/8.jpg" alt="image08"><div>http://www.mathiassterner.com/home</div></a>
-      <a href="#"><img src="/assets/test/9.jpg" alt="image09"><div>http://learnlakenona.com/</div></a>
-      <a href="#"><img src="/assets/test/10.jpg" alt="image10"><div>http://www.neighborhood-studio.com/</div></a>
-      <a href="#"><img src="/assets/test/11.jpg" alt="image11"><div>http://www.beckindesign.com/</div></a>
-      <a href="#"><img src="/assets/test/12.jpg" alt="image12"><div>http://kicksend.com/</div></a>
-    </div>
-    <nav> 
-      <section id="set-1">
-        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9a">
-          <span class="dg-prev hi-icon hi-icon-prev"></span>
-          <span class="dg-next hi-icon hi-icon-next"></span>
-        </div>
-      </section>
-    </nav>
-  </section>
-</div>
-<script type="text/javascript">
+<ul class="grid cs-style-5">
+  <% items = item.split(" ") %>
+  <% items.each do |item| %>
+  <li>
+    <figure class="thumbnail">
+      <img src="/assets/test/<%= item %>.jpg" alt="img0<%= item %>">
+      <figcaption>
+        <h5>Settings</h5>
+        <span>Jacob Cummings</span><br>
+        <a href="#" class="btn btn-default">Take a look</a>
+        <a href="#" class="btn <%= button %>">Take a look</a>
+      </figcaption>
+    </figure>
+  </li>
+  <% end %>
+</ul>
+<div style="display:none;" class="nav_up" id="nav_up"></div>
+<div style="display:none;" class="nav_down" id="nav_down"></div>
+
+<script>
 $(function() {
-  $('.dg-container-test').gallery({
-    autoplay  : true,
-    interval: 2000,
-    current: 0,
+  var $elem = $('#welcome');
+
+  $('#nav_up').fadeIn('slow');
+  $('#nav_down').fadeIn('slow');  
+
+  $(window).bind('scrollstart', function(){
+    $('#nav_up,#nav_down').stop().animate({'opacity':'0.2'});
   });
+  $(window).bind('scrollstop', function(){
+    $('#nav_up,#nav_down').stop().animate({'opacity':'1'});
+  });
+
+  $('#nav_down').click(
+    function (e) {
+      $('html, body').animate({scrollTop: $elem.height()}, 800);
+    }
+    );
+  $('#nav_up').click(
+    function (e) {
+      $('html, body').animate({scrollTop: '0px'}, 800);
+    }
+    );
 });
-var hash = window.location.hash,
-current = 0,
-demos = Array.prototype.slice.call( document.querySelectorAll( '#codrops-demos > a' ) );
-
-if( hash === '' ) hash = '#set-1';
-setDemo( demos[ parseInt( hash.match(/#set-(\d+)/)[1] ) - 1 ] );
-
-demos.forEach( function( el, i ) {
-  el.addEventListener( 'click', function() { setDemo( this ); } );
-} );
-
-function setDemo( el ) {
-  var idx = demos.indexOf( el );
-  if( current !== idx ) {
-    var currentDemo = demos[ current ];
-    currentDemo.className = currentDemo.className.replace(new RegExp("(^|\\s+)" + 'current-demo' + "(\\s+|$)"), ' ');
-  }
-  current = idx;
-  el.className = 'current-demo'; 
-}
-</script/>
+</script>
