@@ -13,6 +13,7 @@ gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.g
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'will_paginate-bootstrap'
 gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'rails_12factor', group: :production
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
