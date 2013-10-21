@@ -1,0 +1,9 @@
+<tr id="<%=user.id%>" class="rows">
+	<td style="text-align:center" class="check">
+		<input type="checkbox" class="checkall" name="user_ids" value="<%= user.id %>" />
+	</td>
+	<td><%= link_to user.email, edit_user_path(user) %></td>
+	<td><%= user.name %></td>
+	<td><center><%= raw(admin_label(user.admin,user.smod)) %></center></td>
+	<td><center><%= raw(status_label(user.active)) %></center></td>
+</tr>

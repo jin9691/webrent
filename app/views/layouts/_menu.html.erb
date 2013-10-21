@@ -1,0 +1,14 @@
+<% page = check_controller() %>
+<div class="cbp-spmenu-push">
+	<nav class="cbp-spmenu cbp-spmenu-vertical" id="cbp-spmenu-s1">
+		<h3><a style="color:#fff;font-size:30px;margin-right:10px"><b>Trang Quản Trị</b></a> 
+		<a href="<%= welcome_path %>"><img src="/assets/pages/icon.png" height="30px" class="icon-webrent"></img></a></h3>
+		<div class="menu-admin">
+		<a href="<%= users_path %>" class="<%= "active" if page == "users" %>"><span class="glyphicon glyphicon-user"></span> Tài khoản người dùng</a>
+		<a href="#" class="<%= "active" if page == "webtypes" %>"><span class="glyphicon glyphicon-tasks"></span> Thể loại website</a>
+		<a href="#" class="<%= "active" if page == "websites" %>"><span class="glyphicon glyphicon-list-alt"></span> Danh sách website</a>
+		<a href="#" class="<%= "active" if page == "reports" %>"><span class="glyphicon glyphicon-stats"></span> Thống kê</a>
+		<%= link_to raw("<i class='glyphicon glyphicon-off'></i> Đăng xuất"), signout_path, method: "delete" %>
+		</div>
+	</nav>
+</div>

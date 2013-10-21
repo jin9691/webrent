@@ -6,22 +6,26 @@
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery.gallery" %>
   <%= javascript_include_tag "component" %>
+  <%= javascript_include_tag "classie" %>
   <%= javascript_include_tag "toucheffects" %>
   <%= javascript_include_tag "modernizr.custom.53451" %>
   <%= javascript_include_tag "scroll-startstop.events.jquery" %>
   <%= csrf_meta_tags %>
 </head>
-<body class="<%= check_background(params[:controller],params[:action]) %>">
-  <%= check_page(params[:controller],params[:action]) %>
-	<%= render 'layouts/header' %>	
-	<div class="container">
-		<% flash.each do |key, value| %>
-    <% check_error = check_error(params[:controller],params[:action]) %>
-    <% unless params[:commit] == "Đăng nhập" && params[:action] == "create" || check_error == true || params[:commit] == "Đăng ký" %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %> 
+<body class="<%= check_background() %>">
+  <% page = check_page()[0] %>
+  <%= render 'layouts/header' unless page == "administrators" %>
+  <%= render 'layouts/menu' if page == "administrators" %>  
+  <div class="container">
+    <div class="col-md-11 col-md-offset-2">
+      <% flash.each do |key, value| %>
+      <% check_error = check_error(params[:controller],params[:action]) %>
+      <% unless params[:commit] == "Đăng nhập" && params[:action] == "create" || check_error == true || params[:commit] == "Đăng ký" %>
+      <div class="alert alert-<%= key %>" style="margin-top:20px"><%= value %></div>
+      <% end %> 
 
-    <% end %>
+      <% end %>
+    </div>
     <%= yield %>
   </div>
 
@@ -32,10 +36,10 @@
     <%= yield(:popup) %>
   </div>
 
-    <%= yield(:popup_reset) %>
+  <%= yield(:popup_reset) %>
 
   <%= yield(:upload_form) %>
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/footer' unless page == "administrators" %>
 
 </body>
 </html>

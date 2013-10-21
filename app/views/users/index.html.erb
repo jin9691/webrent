@@ -1,0 +1,199 @@
+<% provide(:title, 'Quản lý tài khoản') %>
+<div class="col-md-11 col-md-offset-2">
+	<h1 class="page-header" style="font-size:45px"><a href = "<%= users_path %>"><b><span class='glyphicon glyphicon-user'></span> Quản lý tài khoản </b></a><strong><small>(Tổng cộng: <%= @count %>)</small></strong> <%= link_to raw("<span style='margin-right:10px' class='glyphicon glyphicon-plus-sign'></span> Thêm tài khoản"),new_user_path, class: "pull-right btn-lg btn btn-outline-webrent-active",style: "margin-top:10px" %></h1>
+	<% if @users.any? %>
+	<br>
+	<%= render 'user_navigation' %>
+	<br>
+	<table class="table table-hover table-users">
+		<thead>
+			<tr>
+				<th>
+					<center><b><span class="glyphicon glyphicon-ok-circle"></span></b></center>
+				</th>
+				<th><b>Địa chỉ email</b></th>
+				<th><b>Họ và tên</b></th>
+				<th><center><b>Phân quyền</b></center></th>
+				<th><center><b>Trạng thái</b></center></th>
+			</tr>
+		</thead>
+		<tbody id="data-users">
+			<% @users.each do |user| %>
+			<%= render "user", user: user %>
+			<% end %>
+		</tbody>
+	</table>
+	<div id="page-pagination">
+		<%= will_paginate @users, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
+	</div>
+	<% end %>
+</div>
+<script type="text/javascript">
+var check_click = true;
+$(".check").hover(function(){
+	check_click = false;
+},function(){
+	check_click = true;
+});
+
+$('.rows').click(function(){
+	var id = $(this).attr("id");
+	if(check_click)
+		window.location.href='users/'+id+'/edit';
+})
+
+
+var mark_all_click = false
+$("#mark-all").click(function(){
+	if(!mark_all_click)
+	{
+		$("#delete-mark").css("display","inline")
+		$("#edit-mark").css("display","inline")
+		$('input:checkbox.checkall').prop('checked','checked')
+		$(this).html("<span style='margin-right:10px' class='glyphicon glyphicon-remove-circle'></span> Hủy bỏ")
+		mark_all_click = true
+	}
+	else
+	{
+		$("#delete-mark").css("display","none")
+		$("#edit-mark").css("display","none")
+		$('input:checkbox.checkall').removeAttr('checked')
+		$(this).html("<span style='margin-right:10px' class='glyphicon glyphicon-ok-circle'></span> Chọn tất cả")
+		mark_all_click = false
+	}
+})
+function check_all()
+{
+	check = false
+	$(".table-users tr").each(function(){
+		if($(this).children().children(".checkall").is(':checked'))
+		{
+			check = true
+		}
+	})
+	return check
+}
+$(".checkall").click(function(){
+	if(check_all())
+	{
+		$("#delete-mark").css("display","inline")
+		$("#edit-mark").css("display","inline")
+		$("#mark-all").html("<span class='glyphicon glyphicon-remove-circle'></span> Hủy bỏ")
+		mark_all_click = true
+	}
+	else
+	{
+		$("#delete-mark").css("display","none")
+		$("#edit-mark").css("display","none")
+		$("#mark-all").html("<span class='glyphicon glyphicon-ok-circle'></span> Chọn tất cả")
+		mark_all_click = false
+
+	}
+})
+
+$("#delete-mark").click(function(){
+	var users_id = ""
+	var sub_checked = false
+	$(".table-users tr").each(function(){
+		if($(this).children().children(".checkall").is(':checked'))
+		{
+			users_id += $(this).children().children(".checkall").val() +" "
+			sub_checked = true
+		}
+	})
+	if (sub_checked)
+	{
+		if (confirm("Bạn chắc chắn xóa các tài khoản được đánh dấu?"))
+		{
+			$.ajax({ type: "DELETE",   
+				url: "<%= user_path(User.first) %>",   
+				data: {users_id:users_id} ,
+			});
+		}
+	}
+})
+
+$(".permission").click(function(){
+	var permission = $(this).attr("id")
+	var messeage = ""
+	var admin
+	if(permission == "admin")
+	{
+		messeage = "\"Quản trị viên\""
+		admin = true;
+	}
+	else
+	{
+		messeage = "\"Người dùng\""
+		admin = false
+	}
+	var users_id = ""
+	var sub_checked = false
+	$(".table-users tr").each(function(){
+		if($(this).children().children(".checkall").is(':checked'))
+		{
+			users_id += $(this).children().children(".checkall").val() +" "
+			sub_checked = true
+		}
+	})
+	if (sub_checked)
+	{
+		if (confirm("Bạn chắc chắn các tài khoản được đánh dấu sẽ trở thành "+messeage+"?"))
+		{
+			$.ajax({ type: "POST",   
+				url: "<%= update_permission_user_path %>",   
+				data: {users_id:users_id,admin: admin} ,
+			});
+		}
+	}
+})
+
+$(".status").click(function(){
+	var status = $(this).attr("id")
+	var messeage = ""
+	var status
+	if(status == "active")
+	{
+		messeage = "\"Đã kích hoạt\""
+		status = true;
+	}
+	else
+	{
+		messeage = "\"Chưa kích hoạt\""
+		status = false
+	}
+	var users_id = ""
+	var sub_checked = false
+	$(".table-users tr").each(function(){
+		if($(this).children().children(".checkall").is(':checked'))
+		{
+			users_id += $(this).children().children(".checkall").val() +" "
+			sub_checked = true
+		}
+	})
+	if (sub_checked)
+	{
+		if (confirm("Bạn chắc chắn trạng thái của các tài khoản được đánh dấu sẽ trở thành "+messeage+"?"))
+		{
+			$.ajax({ type: "POST",   
+				url: "<%= update_status_user_path %>",   
+				data: {users_id:users_id,status: status} ,
+			});
+		}
+	}
+})
+
+$(".fill-permission").click(function(){
+	var permission = $(this).attr("id")
+	var admin
+	if(permission == "fill-admin")
+	{
+		admin = true;
+	}
+	else
+	{
+		admin = false
+	}
+	window.location.href='users/fill_permission?a='+admin;
+})
+</script>

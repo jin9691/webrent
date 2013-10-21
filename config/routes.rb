@@ -1,15 +1,32 @@
 Webrent::Application.routes.draw do
   match '/forgot_password', to:'users#forgot_password', via: 'post'
-  resources :users do
+  resources :users, except: [:index,:show,:update,:destroy,:edit,:new,:create] do
     member do
       match '/register', to:'users#register', via: 'get'
       match '/reset_password', to:'users#reset_password', via: 'get'
       match '/update_password', to:'users#update_password', via: 'patch'
     end
   end
+
+  resources :administrators, only: [:index] do
+    collection do
+      resources :users do
+        collection do
+          get 'fill_permission', to: 'users#fill_permission'
+          get 'fill_status', to: 'users#fill_status'
+        end
+      end
+    end
+  end
+
+  post 'update_permission_user', to: 'users#update_permission'
+  post 'update_status_user', to: 'users#update_status'
+
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
-  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signup',  to: 'users#signup',            via: 'get'
+  match '/signup_access',  to: 'users#signup_access',            via: 'post'
+  match '/signup_access',  to: 'static_pages#signup_access',            via: 'post'
   match '/welcome',  to: 'static_pages#welcome',via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

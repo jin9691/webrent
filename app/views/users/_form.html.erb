@@ -1,0 +1,39 @@
+<%= form_for @user,html: {class: "form-horizontal"} do |f| %>
+<%= render 'shared/error_messages', object: @user %>
+<div class="form-group">
+	<%= f.label "Họ và tên* :", class: "col-lg-3 control-label" %>
+	<div class="col-lg-9">
+		<%= f.text_field :name, style:"margin-bottom: 20px;",class: "form-control" %>
+	</div>
+	<%= f.label "Địa chỉ email* :", class: "col-lg-3 control-label" %>
+	<div class="col-lg-9">
+		<%= f.text_field :email, style:"margin-bottom: 20px;",class: "form-control" %>
+	</div>
+	<%= f.label "Mật khẩu* :", class: "col-lg-3 control-label" %>
+	<div class="col-lg-9">
+		<%= f.password_field :password, style:"margin-bottom: 20px;",class: "form-control" %>
+	</div>
+	<%= f.label "Nhập lại mật khẩu* :", class: "col-lg-3 control-label" %>
+	<div class="col-lg-9">
+		<%= f.password_field :password_confirmation, style:"margin-bottom: 25px;",class: "form-control" %>
+	</div>
+	<%= f.label "Trạng thái :", class: "col-lg-3 control-label" %>
+	<div class="col-lg-9">
+		<%= f.select :active, [['Chưa kích hoạt', false], ['Đã kích hoạt', true]],{},class: "form-control", style:"margin-bottom: 20px;" %>
+	</div>
+	<% if current_user.smod %>
+		<%= f.label "Phân quyền :", class: "col-lg-3 control-label" %>
+		<div class="col-lg-9">
+			<%= f.select :admin, [['Người dùng', false], ['Quản trị viên', true]],{},class: "form-control", style:"margin-bottom: 25px;" %>
+		</div>
+	<% end %>
+	<div class="col-lg-3">
+	</div>
+	<div class="col-lg-9">
+		<%= f.button :submit, class: "btn btn-lg btn-webrent",style: "width:150px" do %>
+		<span style='margin-right:10px' class='glyphicon glyphicon-ok-circle' ></span> Đồng ý
+		<% end %>
+		<%= link_to raw("<span style='margin-right:10px' class='glyphicon glyphicon-circle-arrow-left' ></span> Quay lại"), users_path, class: "btn btn-primary btn-lg",style: "width:150px;margin-left:5px" %>
+	</div>
+</div>
+<% end %>

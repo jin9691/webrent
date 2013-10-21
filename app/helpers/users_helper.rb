@@ -1,4 +1,21 @@
 module UsersHelper
+	def status_label(status)
+		if status == true
+			return "<span class='label label-primary'>Đã kích hoạt</span>"
+		else
+			return "<span class='label label-webrent'>Chưa kích hoạt</span>"
+		end
+	end
+
+	def admin_label(admin,smod)
+		if admin == true
+			return "<span class='label label-success'>Quản trị viên</span>" if smod == false
+			return "<span class='label label-danger'>Siêu quản trị</span>" if smod == true
+		else
+			return "<span class='label label-warning'>Người dùng</span>"
+		end
+	end
+
 	def gender_error(msg)
 		if msg == "Name can't be blank"
 			return "Họ và tên không được để trống"

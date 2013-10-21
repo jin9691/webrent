@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
-	skip_before_filter :signed_in_user
+	before_filter :correct_signin, only: [:create,:new]
 	def new
 	end
 
 	def create
 		user = User.find_by(email: params[:session][:email].downcase)
-		if user && user.authenticate(params[:session][:password]) && user.parent_id.nil? && user.active
+		if user && user.authenticate(params[:session][:password]) && user.active
 			sign_in user
 			redirect_to welcome_path
 		else
@@ -17,5 +17,12 @@ class SessionsController < ApplicationController
 	def destroy
 		sign_out
 		redirect_to root_url
+	end
+
+	def correct_signin
+    	if !current_user.nil?
+    		sign_out
+			redirect_to root_url
+    	end
 	end
 end

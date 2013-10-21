@@ -10,6 +10,8 @@ gem 'mysql', '~> 2.8.1', :require => nil, :group => 'mysql'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
+gem 'bootstrap-will_paginate', '0.0.6'
+gem 'will_paginate-bootstrap'
 gem 'bcrypt-ruby', '~> 3.0.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

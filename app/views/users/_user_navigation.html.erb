@@ -1,0 +1,49 @@
+<div class="row">
+		<div class="col-md-8">
+			<div class="btn-group">
+				<button type="button" id="mark-all" class="btn btn-inline-inverse"><span style='margin-right:10px' class='glyphicon glyphicon-ok-circle'></span> Chọn tất cả</button>
+				<% if current_user.smod %>
+				<%= button_tag raw("<span style='margin-right:10px' class='glyphicon glyphicon-trash'></span> Xóa"), class: "btn btn-inline-inverse", id: "delete-mark", style: "display:none" %>
+				<% end %>
+				<div class="btn-group">
+					<button type="button" id="edit-mark" class="btn btn-inline-inverse dropdown-toggle" style="display:none" data-toggle="dropdown">
+						<span style='margin-right:10px' class='glyphicon glyphicon-pencil'></span> Chỉnh sửa
+						<span class="caret" style='margin-left:10px'></span>
+					</button>
+					<ul class="dropdown-menu">
+						<% if current_user.smod %>
+						<li><a id="admin" class="permission" href="#"><b>Phân quyền: </b>Quản trị viên</a></li>
+						<li><a id="user" class="permission" href="#"><b>Phân quyền: </b>Người dùng</a></li>
+						<li class="divider"></li>
+						<% end %>
+						<li><a id="active" class="status" href="#"><b>Trạng thái: </b>Đã kích hoạt</a></li>
+						<li><a id="suppend" class="status" href="#"><b>Trạng thái: </b>Chưa kích hoạt</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<button type="button" class="btn btn-inline-inverse dropdown-toggle" data-toggle="dropdown">
+						<span style='margin-right:10px' class='glyphicon glyphicon-filter'></span> Lọc
+						<span class="caret" style='margin-left:5px'></span>
+					</button>
+					<ul class="dropdown-menu">
+						<% if current_user.smod %>
+						<li><a id="fill-admin" class="fill-permission" href="#fill-admin"><b>Phân quyền: </b>Quản trị viên</a></li>
+						<li><a id="fill-user" class="fill-permission" href="#fill-user"><b>Phân quyền: </b>Người dùng</a></li>
+						<li class="divider"></li>
+						<% end %>
+						<li><a id="fill-active" class="fill-status" href="#"><b>Trạng thái: </b>Đã kích hoạt</a></li>
+						<li><a id="fill-suppend" class="fill-status" href="#"><b>Trạng thái: </b>Chưa kích hoạt</a></li>
+					</ul>
+				</div>
+				<%= link_to raw("<span style='margin-right:10px' class='glyphicon glyphicon-refresh'></span> Làm mới"), users_path, class: "btn btn-inline-inverse" %>
+			</div>
+		</div>
+		<div class="col-md-4 pull-right">
+			<div class="input-group">
+				<input type="text" class="form-control" placeholder="Nhập vào họ tên hoặc địa chỉ email...">
+				<span class="input-group-btn">
+					<button class="btn btn-inline-inverse" type="button"><span class="glyphicon glyphicon-search"></span></button>
+				</span>
+			</div><!-- /input-group -->
+		</div>
+	</div>

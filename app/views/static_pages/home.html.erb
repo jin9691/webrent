@@ -6,7 +6,7 @@
 			<br><br>
 			<main class="bs-masthead" id="content" role="main">
 				<div class="container">
-					<div class="col-xs-9 col-sm-9 col-md-9" id="carousel-bounding-box">
+					<div class="col-xs-9 col-sm-9 col-md-9" id="carousel-bounding-box" style="min-height:400px">
 						<br>
 						<h1>Webrent</h1><br>
 						<p class="lead">Đơn giản,dễ dàng,nhanh chóng, không mất phí khởi tạo, không cần mua tên miền,thuê host, Chỉ cần <b style="color:#fff">"đăng ký thành viên"</b> và <b style="color:#fff">"khởi tạo website"</b> là có thể sở hữu ngay một website bán hàng như ý muốn.</p>
@@ -16,12 +16,13 @@
 						</p>
 						<br>
 					</div>
+					<% if current_user.nil? %>
 					<div class="login">
 						<div class="row-fluid pricing-table pricing-one-column">
 							<div class="col-xs-3 col-sm-3 col-md-3 plan">
 								<h2 style="padding-bottom:5px"><b>Đăng ký nhanh</b></h2>
 								<br>
-								<%= form_for(@user) do |f| %>
+								<%= form_for @user, url: { action: "signup_access" }  do |f| %>
 								<%= render 'shared/error_messages', object: @user %>
 								<%= f.text_field :name, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Họ và tên" %>
 
@@ -30,8 +31,8 @@
 								<%= f.password_field :password, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Mật khẩu" %>
 
 								<%= f.password_field :password_confirmation, style:"margin-bottom: 14px;",class: "form-control",placeholder:"Nhập lại mật khẩu" %>
-								<%= f.submit "Tạo tài khoản", class: "btn btn-success btn-block", style:"margin-bottom: 10px;" %>
-								<a data-toggle="modal" href="#myModal" class="forgot btn btn-warning btn-block" style="margin-bottom: 20px">Quên mật khẩu</a>
+								<%= f.submit "Tạo tài khoản", class: "btn btn-webrent btn-block", style:"margin-bottom: 10px;" %>
+								<a data-toggle="modal" href="#myModal" class="forgot btn btn-danger btn-block" style="margin-bottom: 20px">Quên mật khẩu</a>
 
 								<%= content_for :popup_reset do %>
 								<%= render 'layouts/popup_reset_password' %>
@@ -40,6 +41,7 @@
 							</div>
 						</div>
 					</div>
+					<% end %>
 				</div>
 			</main>
 		</div>

@@ -12,37 +12,38 @@ module ApplicationHelper
 		return false
 	end
 
-	def check_background(controler,action)
-		if controler == "static_pages" && action == "home"
+	def check_background()
+		if request.fullpath.split("/")[1] == nil
 			return "homepage"
 		end
-		if controler == "static_pages" && action == "welcome"
+		if request.fullpath.split("/")[1]  == "welcome"
 			return "main-webrent"
 		end
-		if controler == "sessions" && action == "new"
+		if request.fullpath.split("/")[1] == "sessions"
 			return "homepage"
 		end
-		if controler == "sessions" && action == "create"
+		if request.fullpath.split("/")[1] == "signin"
 			return "homepage"
 		end
-		if controler == "users" && action == "new"
+		if request.fullpath.split("/")[1] == "signup"
 			return "homepage"
 		end
-		if controler == "users" && action == "create"
+		if request.fullpath.split("/")[1] == "users"
 			return "homepage"
+		end
+		if request.fullpath.split("/")[1] == "signup_access"
+			return "homepage"
+		end
+		if request.fullpath.split("/")[1] == "administrators"
+			return "administrators"
 		end
 	end
 
-	def check_page(controler,action)
-		if controler == "static_pages" && action == "welcome"
-			return "welcome"
-		end
-		if controler == "sessions" && action == "new"
-			return "signin"
-		end
-		if controler == "users" && action == "new"
-			return "signup"
-		end
-		
+	def check_page()
+		return request.fullpath.split("/")[1],request.fullpath.split("/")[2]
+	end
+
+	def check_controller()
+		return params[:controller]
 	end
 end
